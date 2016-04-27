@@ -46,6 +46,7 @@ function onBridgeReady()
 
 function demo()
 {
+	var ctx = _INJ.renderCtx;
 	ctx.fillStyle = 'green';
 	_INJ.demoTimer = setInterval(demoRect, 100);
 	setTimeout(stop, 5000);
