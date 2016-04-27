@@ -9,11 +9,11 @@ pre.innerHTML = '';
 var cv = document.getElementById('injectedcanvas');
 if (cv == null)
 {
-  cv = document.createElement('canvas');
-  cv.id = 'injectedcanvas';
-  cv.width = 800;
-  cv.height = 800;
-  pre.parentNode.insertBefore(cv, pre);
+	cv = document.createElement('canvas');
+	cv.id = 'injectedcanvas';
+	cv.width = 800;
+	cv.height = 800;
+	pre.parentNode.insertBefore(cv, pre);
 }
 //cv = nw.document.getElementById('inj');
 //alert('before paint');
