@@ -1,6 +1,6 @@
 DEBUG = typeof DEBUG !== 'undefined' && DEBUG == true;
 _INJ = new Object();
-(function() {
+(function() { //setup
 //console.log("hi!");
 var pre = document.getElementById('edoutput');
 pre.innerHTML = '';
@@ -15,6 +15,13 @@ if (cv == null)
 	cv.height = 800;
 	pre.parentNode.insertBefore(cv, pre);
 }
+var commParent = document.getElementById('commparent');
+if (commParent == null)
+{
+	commParent = document.createElement('div');
+	commParent.id = 'commparent';
+	pre.parentNode.insertBefore(cv, pre);
+}
 //cv = nw.document.getElementById('inj');
 //alert('before paint');
 var ctx = cv.getContext('2d');
@@ -24,12 +31,25 @@ ctx.fillStyle = 'black';
 ctx.fillRect(0, 0, 20, 20);
 _INJ.element = cv;
 _INJ.renderCtx = ctx;
+_INJ.bridge = commParent;
 
-ctx.fillStyle = 'green';
-_INJ.demoTimer = setInterval(demoRect, 100);
-setTimeout(stop, 5000);
+if (typeof onBridgeReady === "function")
+{
+	onBridgeReady();
+}
 })();
 
+function onBridgeReady()
+{
+	demo();
+}
+
+function demo()
+{
+	ctx.fillStyle = 'green';
+	_INJ.demoTimer = setInterval(demoRect, 100);
+	setTimeout(stop, 5000);
+}
 function demoRect()
 {
 	if (DEBUG)
