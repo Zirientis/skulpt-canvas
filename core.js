@@ -30,10 +30,18 @@ setTimeout(stop, 5000);
 
 function demoRect()
 {
+	if (DEBUG)
+	{
+		console.debug("demoRect");
+	}
 	var ctx = _INJ.renderCtx;
-  ctx.fillRect(800 * Math.random(), 800 * Math.random(), 20, 20);
+	ctx.fillRect(800 * Math.random(), 800 * Math.random(), 20, 20);
 }
 function stop()
 {
+	if (DEBUG)
+	{
+		console.debug("stop");
+	}
 	clearInterval(_INJ.demoTimer);
 }
