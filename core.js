@@ -1,3 +1,4 @@
+_INJ = new Object();
 (function() {
 //console.log("hi!");
 var pre = document.getElementById('edoutput');
