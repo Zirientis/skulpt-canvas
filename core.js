@@ -13,14 +13,14 @@ if (cv == null)
 	cv.id = 'injectedcanvas';
 	cv.width = 800;
 	cv.height = 800;
-	pre.parentNode.insertBefore(cv, pre);
+	pre.parentNode.insertBefore(cv, null);
 }
 var commParent = document.getElementById('commparent');
 if (commParent == null)
 {
 	commParent = document.createElement('div');
 	commParent.id = 'commparent';
-	pre.parentNode.insertBefore(cv, pre);
+	pre.parentNode.insertBefore(cv, null);
 }
 //cv = nw.document.getElementById('inj');
 //alert('before paint');
