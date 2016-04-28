@@ -18,10 +18,11 @@ while True:
         break
 bridge.innerHTML = 'ready'
 # Put Python<->JS class here.
-class FakeCanvas:
+class Canvas:
     def fillRect(self, x, y, width, height):
-        pass
-
+        cmd = document.createElement('span');
+        cmd.innerHTML = "{0} {1} {2} {3}".format(x, y, width, height)
+		bridge.appendChild(cmd)
 
 
 
