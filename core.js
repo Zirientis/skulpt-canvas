@@ -67,7 +67,7 @@ function mutationCallback(mutations, observer)
 
 function handleCommand(cmdarr)
 {
-	var cmdname = cmdwargs[0];
+	var cmdname = cmdarr[0];
 	if (DEBUG)
 	{
 		console.debug("decoding a " + cmdname);
