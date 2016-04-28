@@ -1,1 +1,2 @@
+https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/demo.js
 https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/core.js
