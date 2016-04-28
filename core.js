@@ -2,7 +2,7 @@ _INJ = new Object();
 (function() { //setup
 //console.log("hi!");
 var pre = document.getElementById('edoutput');
-pre.innerHTML = '';
+//pre.innerHTML = '';
 //alert(_INJ.source);
 //nw = window.open('data:text/html,<html><body><canvas id="inj"></canvas></body></html>', 'pop');
 var cv = document.getElementById('injectedcanvas');
