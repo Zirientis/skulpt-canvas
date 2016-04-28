@@ -11,10 +11,8 @@ if (cv == null)
 	pre.parentNode.insertBefore(cv, pre);
 }
 var ctx = cv.getContext('2d');
-ctx.fillStyle = 'blue';
+ctx.fillStyle = 'white';
 ctx.fillRect(0, 0, cv.width, cv.height);
-ctx.fillStyle = 'black';
-ctx.fillRect(0, 0, 20, 20);
 _INJ.element = cv;
 _INJ.renderCtx = ctx;
 _INJ.linkUpTimer = setInterval(isLinkReady, 1000);

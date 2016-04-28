@@ -5,7 +5,12 @@ function onLinkReady()
 
 function demo()
 {
+  var cv = _INJ.element;
 	var ctx = _INJ.renderCtx;
+  ctx.fillStyle = 'blue';
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, 20, 20);
 	ctx.fillStyle = 'green';
 	_INJ.demoTimer = setInterval(demoRect, 100);
 	setTimeout(stop, 5000);
