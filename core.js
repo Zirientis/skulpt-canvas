@@ -1,4 +1,4 @@
-var _INJ = Object.create(null);
+_INJ = Object.create(null);
 
 function setupLink()
 {
