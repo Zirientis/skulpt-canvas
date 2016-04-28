@@ -1,24 +1,40 @@
 var _INJ = Object.create(null);
 
-function isLinkReady()
+function setupLink()
 {
-	if (_INJ.linkUp === true)
+	if (_INJ.linkState === 2)
 	{
 		return true;
 	}
 	var dat = _INJ.element.innerHTML;
-	if (dat.length > 0 && dat.substr(0, 5) == 'ready')
+	if (dat.length > 0)
 	{
-		clearInterval(_INJ.linkUpTimer);
-		delete _INJ.linkUpTimer;
-		_INJ.linkUp = true;
-		var mutationConfig = { childList: true };
-		_INJ.observer.observe(_INJ.element, mutationConfig);
-		if (typeof onLinkReady === "function")
+		if (dat.substr(0, 8) == 'readyack')
 		{
-			onLinkReady();
+			clearInterval(_INJ.linkStateTimer);
+			delete _INJ.linkStateTimer;
+			_INJ.linkState = 2;
+			if (typeof onLinkReady === "function")
+			{
+				onLinkReady();
+			}
+		}
+		else if (dat.substr(0, 5) == 'ready')
+		{
+			if (_INJ.observing === false)
+			{
+				var mutationConfig = { childList: true };
+				_INJ.observer.observe(_INJ.element, mutationConfig);
+				_INJ.observing = true;
+			}
+			_INJ.linkState = 1;
 		}
 	}
+}
+
+function isLinkReady()
+{
+	return _INJ.linkState === 2;
 }
 
 function mutationCallback(mutations, observer)
@@ -72,6 +88,9 @@ function handleCommand(cmdarr)
 		case "ready":
 			_INJ.element.innerHTML += "ack";
 			break;
+		case "readyack":
+			_INJ.linkState = 2;
+			break;
 		default:
 			console.warn("don't know how to handle command " + cmdname);
 	}
@@ -100,10 +119,11 @@ function _SETUP()
 	ctx.fillRect(0, 0, cv.width, cv.height);
 	_INJ.element = cv;
 	_INJ.renderCtx = ctx;
-	_INJ.linkUpTimer = setInterval(isLinkReady, 250);
-	_INJ.linkUp = false;
+	_INJ.linkStateTimer = setInterval(setupLink, 250);
+	_INJ.linkState = 0;
 
 	// Configure the JS<->Python link
 	var obs = new MutationObserver(mutationCallback);
 	_INJ.observer = obs;
+	_INJ.observing = false;
 }

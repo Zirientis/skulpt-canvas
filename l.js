@@ -1,5 +1,5 @@
 // Fetches required resources and executes the core payload.
-DEBUG = typeof DEBUG !== 'undefined' && DEBUG === true;
+var DEBUG = typeof DEBUG !== 'undefined' && DEBUG === true;
 _LOADER = new Object();
 (function() {
 	var reslistxhr = new XMLHttpRequest();
