@@ -31,4 +31,5 @@ function stop()
 		console.debug("stop");
 	}
 	clearInterval(_INJ.demoTimer);
+  delete _INJ.demoTimer;
 }
