@@ -1,10 +1,7 @@
 _INJ = new Object();
 (function() { //setup
-//console.log("hi!");
 var pre = document.getElementById('edoutput');
 pre.innerHTML = '';
-//alert(_INJ.source);
-//nw = window.open('data:text/html,<html><body><canvas id="inj"></canvas></body></html>', 'pop');
 var cv = document.getElementById('injectedcanvas');
 if (cv == null)
 {
@@ -14,15 +11,6 @@ if (cv == null)
 	cv.height = 800;
 	pre.parentNode.insertBefore(cv, pre);
 }
-var commParent = document.getElementById('commparent');
-if (commParent == null)
-{
-	commParent = document.createElement('div');
-	commParent.id = 'commparent';
-	pre.parentNode.insertBefore(cv, pre);
-}
-//cv = nw.document.getElementById('inj');
-//alert('before paint');
 var ctx = cv.getContext('2d');
 ctx.fillStyle = 'blue';
 ctx.fillRect(0, 0, cv.width, cv.height);
@@ -30,15 +18,24 @@ ctx.fillStyle = 'black';
 ctx.fillRect(0, 0, 20, 20);
 _INJ.element = cv;
 _INJ.renderCtx = ctx;
-_INJ.bridge = commParent;
-
-if (typeof onBridgeReady === "function")
-{
-	onBridgeReady();
-}
+_INJ.linkUpTimer = setInterval(isLinkReady, 1000);
+_INJ.linkUp = false;
 })();
 
-function onBridgeReady()
+function isLinkReady()
+{
+	if (_INJ.element.innerHTML == 'ready')
+	{
+		clearInterval(_INJ.linkUpTimer);
+		delete _INJ.linkUpTimer;
+		if (typeof onLinkReady === "function")
+		{
+			onLinkReady();
+		}
+	}
+}
+
+function onLinkReady()
 {
 	demo();
 }
