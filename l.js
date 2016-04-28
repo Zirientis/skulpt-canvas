@@ -16,6 +16,7 @@ _LOADER = new Object();
 	{
 		console.debug(resources);
 	}
+	var headElem = document.getElementsByTagName('head')[0];
 	for (var i = 0; i < resources.length; i++)
 	{
 		var r = resources[i];
@@ -43,7 +44,9 @@ _LOADER = new Object();
 				console.error("HTTP " + xhr.status);
 				return;
 			}
-			eval(xhr.responseText);
+			var s = document.createElement('script');
+			s.innerHTML = xhr.responseText;
+			headElem.appendChild(s);
 		}
 	}
 	_SETUP();
