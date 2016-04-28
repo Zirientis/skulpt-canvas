@@ -1,37 +1,5 @@
 _INJ = Object.create(null);
 
-function setupLink()
-{
-	if (_INJ.linkState === 2)
-	{
-		return true;
-	}
-	var dat = _INJ.element.innerHTML;
-	if (dat.length > 0)
-	{
-		if (dat.substr(0, 8) == 'readyack')
-		{
-			clearInterval(_INJ.linkStateTimer);
-			delete _INJ.linkStateTimer;
-			_INJ.linkState = 2;
-			if (typeof onLinkReady === "function")
-			{
-				onLinkReady();
-			}
-		}
-		else if (dat.substr(0, 5) == 'ready')
-		{
-			if (_INJ.observing === false)
-			{
-				var mutationConfig = { childList: true };
-				_INJ.observer.observe(_INJ.element, mutationConfig);
-				_INJ.observing = true;
-			}
-			_INJ.linkState = 1;
-		}
-	}
-}
-
 function isLinkReady()
 {
 	return _INJ.linkState === 2;
@@ -88,10 +56,17 @@ function handleCommand(cmdarr)
 			_INJ.renderCtx.fillRect(cmdarr[1], cmdarr[2], cmdarr[3], cmdarr[4]);
 			break;
 		case "ready":
-			_INJ.element.innerHTML += "ack";
+			_INJ.linkState = 1;
+			_INJ.element.innerHTML = "readyack";
 			break;
 		case "readyack":
 			_INJ.linkState = 2;
+			clearInterval(_INJ.linkStateTimer);
+			delete _INJ.linkStateTimer;
+			if (typeof onLinkReady === "function")
+			{
+				onLinkReady();
+			}
 			break;
 		default:
 			console.warn("don't know how to handle command " + cmdname);
@@ -111,7 +86,6 @@ function _SETUP()
 	if (cv == null)
 	{
 		cv = document.createElement('canvas');
-		cv.id = 'injectedcanvas';
 		cv.width = 800;
 		cv.height = 800;
 		pre.parentNode.insertBefore(cv, pre);
@@ -121,11 +95,13 @@ function _SETUP()
 	ctx.fillRect(0, 0, cv.width, cv.height);
 	_INJ.element = cv;
 	_INJ.renderCtx = ctx;
-	_INJ.linkStateTimer = setInterval(setupLink, 250);
 	_INJ.linkState = 0;
 
 	// Configure the JS<->Python link
 	var obs = new MutationObserver(mutationCallback);
+	var mutationConfig = { childList: true };
+	_INJ.observer.observe(cv, mutationConfig);
+	_INJ.observing = true;
 	_INJ.observer = obs;
-	_INJ.observing = false;
+	cv.id = 'injectedcanvas'; // Don't create the ID until we're ready for Python
 }
