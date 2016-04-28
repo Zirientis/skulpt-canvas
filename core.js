@@ -27,6 +27,7 @@ function isLinkReady()
 	{
 		clearInterval(_INJ.linkUpTimer);
 		delete _INJ.linkUpTimer;
+		_INJ.linkUp = true;
 		if (typeof onLinkReady === "function")
 		{
 			onLinkReady();
