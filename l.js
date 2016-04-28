@@ -19,14 +19,22 @@ _LOADER = new Object();
 	for (var i = 0; i < resources.length; i++)
 	{
 		var r = resources[i];
+		if (r.charAt(0) == '#' || r == '') // Ignore lines starting with '#'
+		{
+			continue;
+		}
 		var parts = r.split('.');
 		var ext = parts[parts.length - 1];
 		if (ext == "png" || ext == "jpg")
 		{
-			// Handle images here.
+			console.warn("Loading images not yet supported!");
 		}
 		else if (ext == "js")
 		{
+			if (DEBUG)
+			{
+				console.debug("loading script at " + r);
+			}
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', r + '?r=' + Math.random(), false);
 			xhr.send();
