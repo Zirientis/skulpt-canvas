@@ -26,7 +26,12 @@ observer.observe(cv, mutationConfig);
 
 function isLinkReady()
 {
-	if (_INJ.element.innerHTML == 'ready')
+	if (_INJ.linkUp = true)
+	{
+		return true;
+	}
+	var dat = _INJ.element.innerHTML;
+	if (dat.length > 0 && dat.substr(0, 5) == 'ready')
 	{
 		clearInterval(_INJ.linkUpTimer);
 		delete _INJ.linkUpTimer;
