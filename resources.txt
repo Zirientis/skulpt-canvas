@@ -1,4 +1,4 @@
 # Blank lines and lines starting with '#' are ignored.
 
-https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/demo.js
+https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/jsdemo.js
 https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/core.js
