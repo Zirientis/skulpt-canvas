@@ -1,8 +1,8 @@
-_INJ = Object.create(null);
+var _INJ = Object.create(null);
 
 function isLinkReady()
 {
-	if (_INJ.linkUp == true)
+	if (_INJ.linkUp === true)
 	{
 		return true;
 	}
@@ -81,6 +81,10 @@ function handleCommand(cmdarr)
 
 function _SETUP()
 {
+	if (DEBUG)
+	{
+		console.debug("DEBUG works!");
+	}
 	var pre = document.getElementById('edoutput');
 	var cv = document.getElementById('injectedcanvas');
 	if (cv == null)
@@ -100,6 +104,6 @@ function _SETUP()
 	_INJ.linkUp = false;
 
 	// Configure the JS<->Python link
-	var observer = new MutationObserver(mutationCallback);
-	_INJ.observer = observer;
+	var obs = new MutationObserver(mutationCallback);
+	_INJ.observer = obs;
 }
