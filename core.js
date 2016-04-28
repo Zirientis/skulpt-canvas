@@ -54,6 +54,10 @@ function handleCommand(cmdarr)
 				console.warn("fillrect with bad args length; was " + cmdarr.length);
 			}
 			_INJ.renderCtx.fillRect(cmdarr[1], cmdarr[2], cmdarr[3], cmdarr[4]);
+			if (DEBUG)
+			{
+				console.debug("did fillRect");
+			}
 			break;
 		case "ready":
 			_INJ.linkState = 1;
