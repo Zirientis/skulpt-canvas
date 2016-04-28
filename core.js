@@ -100,7 +100,7 @@ function _SETUP()
 	// Configure the JS<->Python link
 	var obs = new MutationObserver(mutationCallback);
 	var mutationConfig = { childList: true };
-	_INJ.observer.observe(cv, mutationConfig);
+	obs.observe(cv, mutationConfig);
 	_INJ.observing = true;
 	_INJ.observer = obs;
 	cv.id = 'injectedcanvas'; // Don't create the ID until we're ready for Python
