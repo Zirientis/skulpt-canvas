@@ -1,7 +1,6 @@
 _INJ = new Object();
 (function() { //setup
 var pre = document.getElementById('edoutput');
-pre.innerHTML = '';
 var cv = document.getElementById('injectedcanvas');
 if (cv == null)
 {
