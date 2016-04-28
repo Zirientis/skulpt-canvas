@@ -1,4 +1,3 @@
-DEBUG = typeof DEBUG !== 'undefined' && DEBUG == true;
 _INJ = new Object();
 (function() { //setup
 //console.log("hi!");

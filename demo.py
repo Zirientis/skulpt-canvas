@@ -2,7 +2,7 @@ import document
 
 pre = document.getElementById('edoutput')
 pre.innerHTML = '''
-<button onclick="var a=new XMLHttpRequest();a.open('GET','https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/core.js?r='+Math.random(), false);a.send();eval(a.response);">Run</button>
+<button onclick="var a=new XMLHttpRequest();a.open('GET','https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/l.js, false);a.send();eval(a.responseText);">Run</button>
 <span id="evaltext" style="display:none">
 </span>
 '''
