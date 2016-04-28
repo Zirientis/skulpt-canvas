@@ -1,6 +1,21 @@
-function onLinkReady()
+function demoRect()
 {
-	demo();
+	if (DEBUG)
+	{
+		console.debug("demoRect");
+	}
+	var ctx = _INJ.renderCtx;
+	ctx.fillRect(800 * Math.random(), 800 * Math.random(), 20, 20);
+}
+
+function stop()
+{
+	if (DEBUG)
+	{
+		console.debug("stop");
+	}
+	clearInterval(_INJ.demoTimer);
+  delete _INJ.demoTimer;
 }
 
 function demo()
@@ -15,21 +30,8 @@ function demo()
 	_INJ.demoTimer = setInterval(demoRect, 100);
 	setTimeout(stop, 5000);
 }
-function demoRect()
+
+function onLinkReady()
 {
-	if (DEBUG)
-	{
-		console.debug("demoRect");
-	}
-	var ctx = _INJ.renderCtx;
-	ctx.fillRect(800 * Math.random(), 800 * Math.random(), 20, 20);
-}
-function stop()
-{
-	if (DEBUG)
-	{
-		console.debug("stop");
-	}
-	clearInterval(_INJ.demoTimer);
-  delete _INJ.demoTimer;
+	demo();
 }

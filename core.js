@@ -79,26 +79,27 @@ function handleCommand(cmdarr)
 
 
 
-(function() { //setup
-var pre = document.getElementById('edoutput');
-var cv = document.getElementById('injectedcanvas');
-if (cv == null)
+function _SETUP()
 {
-	cv = document.createElement('canvas');
-	cv.id = 'injectedcanvas';
-	cv.width = 800;
-	cv.height = 800;
-	pre.parentNode.insertBefore(cv, pre);
-}
-var ctx = cv.getContext('2d');
-ctx.fillStyle = 'white';
-ctx.fillRect(0, 0, cv.width, cv.height);
-_INJ.element = cv;
-_INJ.renderCtx = ctx;
-_INJ.linkUpTimer = setInterval(isLinkReady, 250);
-_INJ.linkUp = false;
+	var pre = document.getElementById('edoutput');
+	var cv = document.getElementById('injectedcanvas');
+	if (cv == null)
+	{
+		cv = document.createElement('canvas');
+		cv.id = 'injectedcanvas';
+		cv.width = 800;
+		cv.height = 800;
+		pre.parentNode.insertBefore(cv, pre);
+	}
+	var ctx = cv.getContext('2d');
+	ctx.fillStyle = 'white';
+	ctx.fillRect(0, 0, cv.width, cv.height);
+	_INJ.element = cv;
+	_INJ.renderCtx = ctx;
+	_INJ.linkUpTimer = setInterval(isLinkReady, 250);
+	_INJ.linkUp = false;
 
-// Configure the JS<->Python link
-var observer = new MutationObserver(mutationCallback);
-_INJ.observer = observer;
-})();
+	// Configure the JS<->Python link
+	var observer = new MutationObserver(mutationCallback);
+	_INJ.observer = observer;
+}

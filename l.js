@@ -46,4 +46,5 @@ _LOADER = new Object();
 			eval(xhr.responseText);
 		}
 	}
+	_SETUP();
 })();
