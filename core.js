@@ -15,7 +15,7 @@ ctx.fillStyle = 'white';
 ctx.fillRect(0, 0, cv.width, cv.height);
 _INJ.element = cv;
 _INJ.renderCtx = ctx;
-_INJ.linkUpTimer = setInterval(isLinkReady, 1000);
+_INJ.linkUpTimer = setInterval(isLinkReady, 250);
 _INJ.linkUp = false;
 
 // Configure the JS<->Python link
