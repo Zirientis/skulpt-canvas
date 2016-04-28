@@ -3,12 +3,20 @@ import time
 evalstr = '''
 var a=new XMLHttpRequest();a.open('GET','https://raw.githubusercontent.com/Zirientis/skulpt-canvas/master/l.js', false);a.send();eval(a.responseText);
 '''
-b = document.createElement('button')
+pre = document.getElementById('edoutput')
+
+b = document.getElementById('runinjector')
+if b == None:
+	b = document.createElement('button')
+	pre.appendChild(b)
 b.innerHTML = 'Run'
 b.setAttribute('id', 'runinjector')
 b.setAttribute('onclick', evalstr)
-pre = document.getElementById('edoutput')
-pre.appendChild(b)
+
+canvas = document.getElementById('injectedcanvas')
+if canvas != None:
+	div = document.getElementsByClassName('main')[0]
+	div.removeChild(canvas)
 
 bridge = None
 while True:
@@ -21,7 +29,7 @@ bridge.innerHTML = 'ready'
 class Canvas:
     def fillRect(self, x, y, width, height):
         cmd = document.createElement('span');
-        cmd.innerHTML = "{0} {1} {2} {3}".format(x, y, width, height)
+        cmd.innerHTML = "fillrect {0} {1} {2} {3}".format(x, y, width, height)
         bridge.appendChild(cmd)
 
 
