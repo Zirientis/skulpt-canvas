@@ -1,4 +1,4 @@
-_INJ = new Object.create(null);
+_INJ = Object.create(null);
 (function() { //setup
 var pre = document.getElementById('edoutput');
 var cv = document.getElementById('injectedcanvas');
