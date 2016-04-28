@@ -67,6 +67,11 @@ function mutationCallback(mutations, observer)
 
 function handleCommand(cmdarr)
 {
+	if (!isLinkReady())
+	{
+		console.error("link wasn't ready!");
+		return;
+	}
 	var cmdname = cmdarr[0];
 	if (DEBUG)
 	{
