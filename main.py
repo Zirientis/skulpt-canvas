@@ -21,7 +21,7 @@ if canvas != None:
 bridge = None
 while True:
     time.sleep(1)
-    bridge = document.getElementById('injectedcanvas')
+    bridge = document.getElementById('bridge')
     if bridge != None:
         break
 bridge.innerHTML = 'ready'

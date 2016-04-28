@@ -57,7 +57,7 @@ function handleCommand(cmdarr)
 			break;
 		case "ready":
 			_INJ.linkState = 1;
-			_INJ.element.innerHTML = "readyack";
+			_INJ.bridge.innerHTML = "readyack";
 			break;
 		case "readyack":
 			_INJ.linkState = 2;
@@ -88,7 +88,14 @@ function _SETUP()
 		cv = document.createElement('canvas');
 		cv.width = 800;
 		cv.height = 800;
+		cv.id = 'injectedcanvas';
 		pre.parentNode.insertBefore(cv, pre);
+	}
+	var br = document.getElementById('bridge');
+	if (br == null)
+	{
+		br = document.createElement('div');
+		cv.parentNode.insertBefore(br, cv);
 	}
 	var ctx = cv.getContext('2d');
 	ctx.fillStyle = 'white';
@@ -100,8 +107,9 @@ function _SETUP()
 	// Configure the JS<->Python link
 	var obs = new MutationObserver(mutationCallback);
 	var mutationConfig = { childList: true };
-	obs.observe(cv, mutationConfig);
+	obs.observe(br, mutationConfig);
 	_INJ.observing = true;
 	_INJ.observer = obs;
-	cv.id = 'injectedcanvas'; // Don't create the ID until we're ready for Python
+	_INJ.bridge = br;
+	br.id = 'bridge'; // Don't create the ID until we're ready for Python
 }
