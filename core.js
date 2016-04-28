@@ -91,7 +91,8 @@ function handleCommand(cmdarr)
 			}
 			_INJ.renderCtx.fillRect(cmdarr[1], cmdarr[2], cmdarr[3], cmdarr[4]);
 			break;
-		case "ready": // Just an artifact
+		case "ready":
+			_INJ.element.innerHTML += "ack";
 			break;
 		default:
 			console.warn("don't know how to handle command " + cmdname);

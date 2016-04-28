@@ -25,6 +25,9 @@ while True:
     if bridge != None:
         break
 bridge.innerHTML = 'ready'
+while bridge.innerHTML != 'readyack':
+    time.sleep(1)
+    
 # Put Python<->JS class here.
 class Canvas:
     def fillRect(self, x, y, width, height):
@@ -55,3 +58,5 @@ class Canvas:
 
 
 # Your code here
+c = Canvas()
+c.fillRect(20, 20, 50, 50)
