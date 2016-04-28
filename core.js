@@ -21,7 +21,7 @@ _INJ.linkUp = false;
 // Configure the JS<->Python link
 var observer = new MutationObserver(mutationCallback);
 var mutationConfig = { childList: true };
-observer.observe(cv, mutationCallback);
+observer.observe(cv, mutationConfig);
 })();
 
 function isLinkReady()
