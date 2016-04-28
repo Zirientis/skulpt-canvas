@@ -20,8 +20,7 @@ _INJ.linkUp = false;
 
 // Configure the JS<->Python link
 var observer = new MutationObserver(mutationCallback);
-var mutationConfig = { childList: true };
-observer.observe(cv, mutationConfig);
+_INJ.observer = observer;
 })();
 
 function isLinkReady()
@@ -36,6 +35,8 @@ function isLinkReady()
 		clearInterval(_INJ.linkUpTimer);
 		delete _INJ.linkUpTimer;
 		_INJ.linkUp = true;
+		var mutationConfig = { childList: true };
+		_INJ.observer.observe(_INJ.element, mutationConfig);
 		if (typeof onLinkReady === "function")
 		{
 			onLinkReady();
