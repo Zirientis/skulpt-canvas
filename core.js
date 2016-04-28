@@ -1,4 +1,4 @@
-_INJ = new Object();
+_INJ = new Object.create(null);
 (function() { //setup
 var pre = document.getElementById('edoutput');
 var cv = document.getElementById('injectedcanvas');
@@ -25,7 +25,7 @@ _INJ.observer = observer;
 
 function isLinkReady()
 {
-	if (_INJ.linkUp = true)
+	if (_INJ.linkUp == true)
 	{
 		return true;
 	}
