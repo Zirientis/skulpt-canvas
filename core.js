@@ -25,9 +25,9 @@ function mutationCallback(mutations, observer)
 			if (DEBUG)
 			{
 				console.debug("recieved command: " + cmdstr);
-				var cmd = cmdstr.split(' ');
-				handleCommand(cmd);
 			}
+			var cmd = cmdstr.split(' ');
+			handleCommand(cmd);
 		}
 	}
 }
