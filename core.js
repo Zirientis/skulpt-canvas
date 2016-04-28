@@ -65,11 +65,25 @@ function mutationCallback(mutations, observer)
 	}
 }
 
-function handleCommand(cmdwargs)
+function handleCommand(cmdarr)
 {
 	var cmdname = cmdwargs[0];
 	if (DEBUG)
 	{
-		console.debug("executing a " + cmdname);
+		console.debug("decoding a " + cmdname);
+	}
+	switch (cmdname)
+	{
+		case "fillrect":
+			if (cmdarr.length != 5)
+			{
+				console.warn("fillrect with bad args length; was " + cmdarr.length);
+			}
+			_INJ.renderCtx.fillRect(cmdarr[1], cmdarr[2], cmdarr[3], cmdarr[4]);
+			break;
+		case "ready": // Just an artifact
+			break;
+		default:
+			console.warn("don't know how to handle command " + cmdname);
 	}
 }
